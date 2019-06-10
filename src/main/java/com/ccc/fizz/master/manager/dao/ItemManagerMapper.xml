@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ccc.fizz.master.manager.dao.ItemManagerMapper">
+	<resultMap type="com.ccc.fizz.master.base.item.entity.Item" id="ItemMap">
+		<id column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="sell_point" property="sellPoint"/>
+		<result column="price" property="price"/>
+		<result column="num" property="num"/>
+		<result column="barcode" property="barcode"/>
+		<result column="image" property="image"/>
+		<result column="cid" property="cid"/>
+		<result column="status" property="status"/>
+		<result column="created" property="created"/>
+		<result column="updated" property="updated"/>
+	</resultMap>
+
+	<select id="getItemById" resultMap="ItemMap">
+		select * from tb_item where id = #{id}
+	</select>
+	
+	<select id="getItemsByPage" resultMap="ItemMap">
+		select * from tb_item limit #{startNum}, #{count}
+	</select>
+	
+	<insert id="insertItem" parameterType="com.ccc.fizz.master.base.item.entity.Item">
+		insert into tb_item 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="sellPoint != null">
+				sell_point,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="barcode != null">
+				barcode,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="cid != null">
+				cid,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="updated != null">
+				updated,
+			</if>
+		</trim>
+		<trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="title != null">
+				#{title},
+			</if>
+			<if test="sellPoint != null">
+				#{sellPoint},
+			</if>
+			<if test="price != null">
+				#{price},
+			</if>
+			<if test="num != null">
+				#{num},
+			</if>
+			<if test="barcode != null">
+				#{barcode},
+			</if>
+			<if test="image != null">
+				#{image},
+			</if>
+			<if test="cid != null">
+				#{cid},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="created != null">
+				#{created},
+			</if>
+			<if test="updated != null">
+				#{updated},
+			</if>
+		</trim>
+	</insert>
+	
+	<update id="updateItemByPrimaryKey" parameterType="com.ccc.fizz.master.base.item.entity.Item">
+		update tb_item
+		<set>
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="sellPoint != null">
+				sell_point = #{sellPoint},
+			</if>
+			<if test="price != null">
+				price = #{price},
+			</if>
+			<if test="num != null">
+				num = #{num},
+			</if>
+			<if test="barcode != null">
+				barcode = #{barcode},
+			</if>
+			<if test="image != null">
+				image = #{image},
+			</if>
+			<if test="cid != null">
+				cid = #{cid},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="created != null">
+				created = #{created},
+			</if>
+			<if test="updated != null">
+				updated = #{updated},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteItem">
+		delete from tb_item where id = #{id}
+	</delete>
+</mapper>
